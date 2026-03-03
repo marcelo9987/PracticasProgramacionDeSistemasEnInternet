@@ -14,6 +14,13 @@ const Home = () =>
     const [cargando, setCargando] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
 
+    const [buscar, setBuscar] = useState<number>(0);
+
+    const botonPulsado = () =>
+    {
+        setBuscar((prev) => prev + 1);
+    };
+
     const buscarTodos = async () =>
     {
         setPaises(await getPaises());
@@ -32,14 +39,14 @@ const Home = () =>
 
         const fetch = entrada.trim() ? buscarPaises : buscarTodos;
         fetch().catch((e) =>
-            {
-                console.error("Error al buscar países:", e);
-                setError(true);
-            }).finally(() =>
-            {
-                setCargando(false);
-            });
-    }, [entrada]);
+        {
+            console.error("Error al buscar países:", e);
+            setError(true);
+        }).finally(() =>
+        {
+            setCargando(false);
+        });
+    }, [buscar]);
 
 
     return (
@@ -55,8 +62,20 @@ const Home = () =>
                     <input
                         value={entrada}
                         onChange={(e) => setEntrada(e.target.value)}
+                        onKeyDown={(e) =>
+                        {
+                            if (e.key === "Enter")
+                            {
+                                botonPulsado();
+                            }
+                        }
+                        }
                         placeholder="País a buscar"
                     />
+                    <button
+                        onClick={botonPulsado}
+                    >Buscar
+                    </button>
                 </div>
 
                 <div className={"lista-paises"}>
@@ -74,19 +93,19 @@ const Home = () =>
                             <ol>
                                 {[...paises]
                                     .sort((a, b) => a.cca3.localeCompare(b.cca3))
-                                        .map((paisEspecifico: Country) =>
-                                    (
-                                        <CountryCard
-                                            key={paisEspecifico.cca3}
+                                    .map((paisEspecifico: Country) =>
+                                        (
+                                            <CountryCard
+                                                key={paisEspecifico.cca3}
 
-                                            pais={
-                                                {
-                                                    name: paisEspecifico.name.common,
-                                                    flag: paisEspecifico.flag,
+                                                pais={
+                                                    {
+                                                        name: paisEspecifico.name.common,
+                                                        flag: paisEspecifico.flag,
+                                                    }
                                                 }
-                                            }
-                                        />
-                                    ))}
+                                            />
+                                        ))}
                             </ol>
                         )
                     }
