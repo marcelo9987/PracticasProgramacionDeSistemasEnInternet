@@ -39,8 +39,6 @@ practica_2/
 │   │   ├── CountryCard/
 │   │   │   ├── CountryCard.tsx       # Componente para mostrar tarjeta de país
 │   │   │   └── CountryCard.css       # Estilos de la tarjeta
-│   │   └── FullCountryPage/
-│   │       └── FullCountryPage.tsx   # Componente para página completa del país
 │   │
 │   ├── lib/                          # Utilidades y librerías
 │   │   └── api/
