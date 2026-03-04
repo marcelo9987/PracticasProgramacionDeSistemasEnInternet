@@ -50,7 +50,7 @@ const Pais = () => {
     if (cargando) return <main className="pais-page"><p>Cargando...</p></main>;
     if (error || !paisCompleto) return <main className="pais-page"><p>¡No se encontró el país!</p></main>;
 
-    const p = paisCompleto[0]; // normalmente só haberá un resultado exacto
+    const p = paisCompleto[0];
 
     return (
         <main className="pais-page">
