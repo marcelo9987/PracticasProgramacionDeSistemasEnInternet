@@ -55,7 +55,7 @@ const Buscador = () =>
         <div className="albums-page">
             <div className="volver-wrap">
                 <Link href={'/'}>
-                    <button>Voltar</button>
+                    <button>Volver</button>
                 </Link>
             </div>
 
